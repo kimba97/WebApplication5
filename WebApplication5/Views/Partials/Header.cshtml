@@ -1,0 +1,111 @@
+﻿<header role="banner" class="position-absolute">
+    <!-- Top Navigation -->
+    <nav class="background-transparent background-primary-dott full-width sticky">
+        <div class="top-nav">
+            <!-- mobile version logo -->
+            <div class="logo hide-l hide-xl hide-xxl">
+                <a href="index.html" class="logo">
+                    <!-- Logo White Version -->
+                    <img class="logo-white" src="img/logo.svg" alt="">
+                    <!-- Logo Dark Version -->
+                    <img class="logo-dark" src="img/logo-dark.svg" alt="">
+                </a>
+            </div>
+            <p class="nav-text"></p>
+
+            <!-- left menu items -->
+            <div class="top-nav left-menu">
+                <ul class="right top-ul chevron">
+                    <li><a href="Home">Home</a></li>
+                    <li><a href="about-us">About Us</a></li>
+                    <li><a href="services">Our Services</a></li>
+                </ul>
+            </div>
+
+            <!-- logo -->
+            <ul class="logo-menu">
+                <a href="Home" class="logo">
+                    <!-- Logo White Version -->
+                    <img class="logo-white" src="img/logo.svg" alt="">
+                    <!-- Logo Dark Version -->
+                    <img class="logo-dark" src="img/logo-dark.svg" alt="">
+                </a>
+            </ul>
+
+            <!-- right menu items -->
+            <div class="top-nav right-menu">
+                <ul class="top-ul chevron">
+                    <li>
+                        <a>Products</a>
+                        <ul>
+                            <li><a>Product 1</a></li>
+                            <li><a>Product 2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="gallery">Gallery</a></li>
+                    <li><a href="contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+@*@using WebApplication5.Models
+@using Umbraco.Web.Models
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<List<NavigationList>>
+
+<header role="banner" class="position-absolute">
+    <!-- Top Navigation -->
+    <nav class="background-transparent background-primary-dott full-width sticky">
+        <div class="top-nav">
+            <!-- mobile version logo -->
+            <div class="logo hide-l hide-xl hide-xxl">
+                <a href="index.html" class="logo">
+                    <!-- Logo White Version -->
+                    <img class="logo-white" src="img/logo.svg" alt="">
+                    <!-- Logo Dark Version -->
+                    <img class="logo-dark" src="img/logo-dark.svg" alt="">
+                </a>
+            </div>
+            <p class="nav-text"></p>
+
+            <!-- left menu items -->
+            <div class="top-nav left-menu">
+                <ul class="right top-ul chevron">
+                    @RenderSubItems(Model)
+                </ul>
+            </div>
+
+            <!-- logo -->
+            <ul class="logo-menu">
+                <a href="Home" class="logo">
+                    <!-- Logo White Version -->
+                    <img class="logo-white" src="img/logo.svg" alt="">
+                    <!-- Logo Dark Version -->
+                    <img class="logo-dark" src="img/logo-dark.svg" alt="">
+                </a>
+            </ul>
+
+            <!-- right menu items -->
+            <div class="top-nav right-menu">
+                <ul class="top-ul chevron">
+                    @RenderSubItems(Model)
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+@helper RenderSubItems(List<NavigationList> listItems)
+{
+    if (listItems != null)
+    {
+        foreach(var item in listItems)
+        {
+            <a href="@item.Link.Url" target="@item.Link.Target">@item.Link.Text</a>
+            if (item.HasSubNavigation)
+            {
+                    @RenderSubItems(item.NavItems)
+            }
+        }
+    }
+}*@
